@@ -13,7 +13,7 @@ public class FileIO {
 	}
 
 	int counter = 0;
-	private int setCountLine() { // returns the count of the lines of the given csv
+	private int setCountLine() { // ismi değiştirilmeli... tüm elemanları sayıyor
 		int attributes = 0;
 		String line = "";
 		String splitBy = ",";

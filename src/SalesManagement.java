@@ -2,7 +2,7 @@ public class SalesManagement {
 
 	private Sales[][] sales;
 
-	Supplier supplier1 = new Supplier(new FileIO("S1_Products.csv"));
+	Supplier supplier1 = new Supplier(new FileIO("S1_Products.csv")); /// private değil!!!
 	Supplier supplier2 = new Supplier(new FileIO("S2_Products.csv"));
 	Supplier supplier3 = new Supplier(new FileIO("S3_Products.csv"));
 
@@ -42,7 +42,7 @@ public class SalesManagement {
 
 			divideElements += 3;
 
-			// salesprice hesaplanacak method mantıklı
+			
 		}
 		return sales;
 	}
