@@ -29,20 +29,19 @@ public class SalesManagement {
 
 	private Sales[] readSales(FileIO fileName, Supplier supplier) {
 
-		Sales[] sales = new Sales[fileName.counter];
+		Sales[] sales = new Sales[fileName.counter-1];
 		int divideElements = 0;
 
-		for (int i = 0; i < fileName.counter; i++) {
+		for (int i = 0; i < sales.length; i++) {
 
-			String salesID = fileName.elements[i + divideElements];
-			String salesPrice = calculateSalesPrice(salesID, supplier);
+			String salesID = fileName.elements[i + divideElements + 2];
+		
 
 			sales[i] = new Sales(fileName.elements[i + divideElements], fileName.elements[i + divideElements + 1],
-					fileName.elements[i + divideElements + 2], fileName.elements[i + divideElements + 3], salesPrice);
-
+					fileName.elements[i + divideElements + 2], fileName.elements[i + divideElements + 3], calculateSalesPrice(salesID, supplier));
+				
 			divideElements += 3;
 
-			
 		}
 		return sales;
 	}
@@ -51,16 +50,19 @@ public class SalesManagement {
 
 		double tempSalesPrice = 0;
 		String salesPrice = "";
-
+		//System.out.println(supplier.getProducts()[i].getId());
 		for (int i = 0; i < supplier.getProducts().length; i++) {
-			if (salesID == supplier.getProducts()[i].getId()) {
+			//System.out.println(salesID);
+			//System.out.println(salesID.equals(supplier.getProducts()[i].getId()));
+			
+			if (salesID.equals(supplier.getProducts()[i].getId())) {
 				double productPrice = Double.parseDouble(supplier.getProducts()[i].getPrice());
 				double rate = Double.parseDouble(supplier.getProducts()[i].getRate());
 				double numberOfReviews = Double.parseDouble(supplier.getProducts()[i].getNumberOfReviews());
 				tempSalesPrice = productPrice + ((rate / 5.0) * 100 * numberOfReviews);
 				salesPrice = Double.toString(tempSalesPrice);
+				//System.out.println("Murat");
 			}
-
 		}
 		return salesPrice;
 	}

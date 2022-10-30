@@ -13,9 +13,9 @@ public class Supplier {
 
 	private void setProducts(FileIO fileIO) {
 		this.fileIO = fileIO;
-		products = new Product[fileIO.counter];
+		products = new Product[fileIO.counter-1];
 		int divideElements = 0;
-		for (int i = 0; i < fileIO.counter; i++) { // divideElements yerine yeni bir algoritma düşünülebilir...
+		for (int i = 0; i < products.length; i++) { // divideElements yerine yeni bir algoritma düşünülebilir...
 			products[i] = new Product(fileIO.elements[i + divideElements], fileIO.elements[i + divideElements + 1],
 					fileIO.elements[i + divideElements + 2], fileIO.elements[i + divideElements + 3],
 					fileIO.elements[i + divideElements + 4]);

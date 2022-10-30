@@ -1,11 +1,11 @@
 
 public class Sales {
 	
-	String id;
-	String customer;
-	String product;
-	String salesDate;
-	String salesPrice;
+	private String id;
+	private String customer;
+	private String product;//id
+	private String salesDate;
+	private String salesPrice;
 	
 	
 	public Sales(String id, String customer, String product, String salesDate, String salesPrice) {

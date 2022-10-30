@@ -32,7 +32,7 @@ public class FileIO {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return counter * attributes;
+		return (counter-1) * attributes;
 	}
 	
 	public int getCountLine() {
@@ -43,9 +43,12 @@ public class FileIO {
 		BufferedReader br = null;
 		String line = "";
 		String splitBy = ",";
-
+		
+		
 		try {
+			
 			br = new BufferedReader(new FileReader(fileName));
+			br.readLine();
 			int index = 0;
 
 			while ((line = br.readLine()) != null) {
