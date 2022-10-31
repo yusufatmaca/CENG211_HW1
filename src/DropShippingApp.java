@@ -3,7 +3,9 @@ public class DropShippingApp {
 	public static void main(String[] args) {
 	
 		SalesQuery s = new SalesQuery();
-		s.calculateProfit(s.salesManagement.getSales()[0], s.salesManagement.supplier1);
+		
+		
+		//s.calculateProfit(s.salesManagement.getSales()[0], s.salesManagement.supplier1);
 		
 		/*
 		 * SalesManagement salesManagement = new SalesManagement(new FileIO("S1_Sales.csv"), new FileIO("S2_Sales.csv"),
