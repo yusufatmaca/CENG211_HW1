@@ -5,7 +5,8 @@ public class SalesManagement {
 	Supplier supplier1 = new Supplier(new FileIO("S1_Products.csv")); /// private değil!!!
 	Supplier supplier2 = new Supplier(new FileIO("S2_Products.csv"));
 	Supplier supplier3 = new Supplier(new FileIO("S3_Products.csv"));
-
+	
+	
 	FileIO fileName1, fileName2, fileName3;
 
 	public SalesManagement(FileIO fileName1, FileIO fileName2, FileIO fileName3) {

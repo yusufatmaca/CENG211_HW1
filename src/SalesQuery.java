@@ -14,14 +14,15 @@ public class SalesQuery {
 		System.out.println(mostProfitableProduct(salesManagement).getTitle());
 		System.out.println(mostExpensiveProduct(salesManagement).getTitle());
 		System.out.println("Total Profit:   " + totalProfit());
+		System.out.println("Least Profit of S1_Sales:   " + leastProfitEach(salesManagement.getSales()[0], salesManagement.supplier1).getId());
 		
 	}
 
 	public Product mostProfitableProduct(SalesManagement salesManagement) { // Among three supplier
 
-		Product product1 = profitEach(salesManagement.getSales()[0], salesManagement.supplier1); // most profitable
-		Product product2 = profitEach(salesManagement.getSales()[1], salesManagement.supplier2); // most profitable
-		Product product3 = profitEach(salesManagement.getSales()[2], salesManagement.supplier3); // most profitable
+		Product product1 = maxProfitEach(salesManagement.getSales()[0], salesManagement.supplier1); // most profitable
+		Product product2 = maxProfitEach(salesManagement.getSales()[1], salesManagement.supplier2); // most profitable
+		Product product3 = maxProfitEach(salesManagement.getSales()[2], salesManagement.supplier3); // most profitable
 																									// product of S3
 
 		Sales salesOfProduct1 = salesOfProduct(salesManagement.getSales()[0], product1);
@@ -35,7 +36,7 @@ public class SalesQuery {
 		System.out.println(profit1);
 		System.out.println(profit2);
 		System.out.println(profit3);
-*/
+		 */
 		if (profit1 > profit2 && profit1 > profit3) {
 			return product1;
 		} else if (profit2 > profit1 && profit2 > profit3) {
@@ -75,7 +76,7 @@ public class SalesQuery {
 
 	
 
-	public Product profitEach(Sales[] sales, Supplier supplier) {     //calculates the max profitable product for each sales.
+	public Product maxProfitEach(Sales[] sales, Supplier supplier) {     //calculates the max profitable product for each sales.
 
 		Product maxProfitableProduct = null;
 	
@@ -104,7 +105,7 @@ public class SalesQuery {
 
 	}
 
-	public Sales salesOfProduct(Sales[] sales, Product product) {	// gives the sale of the given product
+	private Sales salesOfProduct(Sales[] sales, Product product) {	// gives the sale of the given product
 
 		Sales sales1 = null;
 		// double max = 0.0; // another method
@@ -175,5 +176,59 @@ public class SalesQuery {
 
 		return allProducts;
 	}
+
+
+	// The least-profit product of S1. (Please include the amount of profit to output.)
+	
+	public Product leastProfitEach(Sales[] sales, Supplier supplier) {     //calculates the least profitable product for each sales.
+
+		Product leastProfitableProduct = null;
+		
+		Double profit = 0.0;
+		Double tempPrice = Double.parseDouble(supplier.getProducts()[0].getPrice());
+		Double tempSalesPrice = Double.parseDouble(salesOfProduct(sales, supplier.getProducts()[0]).getSalesPrice());
+		
+		Double leastProfit = tempSalesPrice - tempPrice;
+
+		for (int i = 0; i < sales.length; i++) {
+			for (int j = 0; j < supplier.getProducts().length; j++) {
+				if (sales[i].getProduct().equals(supplier.getProducts()[j].getId())) {
+
+					Double salesPrice = Double.parseDouble(sales[i].getSalesPrice());
+					Double price = Double.parseDouble(supplier.getProducts()[j].getPrice());
+					profit = salesPrice - price;
+					
+					// System.out.println(salesManagement.supplier1.getProducts()[j].getId());
+					System.out.println(profit + supplier.getProducts()[j].getId());
+					
+					if (profit < leastProfit) {
+						leastProfit = profit;
+						leastProfitableProduct = salesManagement.supplier1.getProducts()[j];
+					}
+				}
+			}
+		}
+		
+		return leastProfitableProduct;
+
+	} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
