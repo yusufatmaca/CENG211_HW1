@@ -6,11 +6,16 @@ public class SalesQuery {
 	Customer mostPurchasedOne;
 	//String totalProfit;
 	Double totalProfit1 = 0.0;
+	private Customer[] allCustomers;
+	private FileIO customersFileName;
+	
 
 	SalesManagement salesManagement = new SalesManagement(new FileIO("S1_Sales.csv"), new FileIO("S2_Sales.csv"),
 			new FileIO("S3_Sales.csv"));
 
 	public SalesQuery() {
+		setCustomers(new FileIO("Customers.csv"));
+		//System.out.println(allCustomers[0].getAddress());
 		System.out.println(mostProfitableProduct(salesManagement).getTitle());
 		System.out.println(mostExpensiveProduct(salesManagement).getTitle());
 		System.out.println("Total Profit:   " + totalProfit());
@@ -180,7 +185,7 @@ public class SalesQuery {
 
 	// The least-profit product of S1. (Please include the amount of profit to output.)
 	
-	public Product leastProfitEach(Sales[] sales, Supplier supplier) {     //calculates the least profitable product for each sales.
+	public Product leastProfitEach(Sales[] sales, Supplier supplier) {     //calculates the least profitable product for given sales.
 
 		Product leastProfitableProduct = null;
 		
@@ -199,7 +204,7 @@ public class SalesQuery {
 					profit = salesPrice - price;
 					
 					// System.out.println(salesManagement.supplier1.getProducts()[j].getId());
-					System.out.println(profit + supplier.getProducts()[j].getId());
+					// System.out.println(profit + supplier.getProducts()[j].getId());
 					
 					if (profit < leastProfit) {
 						leastProfit = profit;
@@ -213,8 +218,23 @@ public class SalesQuery {
 
 	} 
 
+	
+	public void setCustomers(FileIO fileName) {
+		customersFileName = fileName;
+		allCustomers = new Customer[customersFileName.counter-1];
+		int divideElements = 0;
+		for (int i = 0; i < allCustomers.length; i++) { 
+			allCustomers[i] = new Customer(customersFileName.elements[i + divideElements], customersFileName.elements[i + divideElements + 1],
+					customersFileName.elements[i + divideElements + 2], customersFileName.elements[i + divideElements + 3],
+					customersFileName.elements[i + divideElements + 4]);
+			divideElements+=4;
+		}
+	}
+	
+	public Customer[] getCustomers() {
 
-
+		return allCustomers;
+	}
 
 
 
