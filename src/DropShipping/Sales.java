@@ -1,9 +1,10 @@
+package DropShipping;
 
 public class Sales {
 	
 	private String id;
 	private String customer;
-	private String product;//id
+	private String productID;//id
 	private String salesDate;
 	private String salesPrice;
 	
@@ -31,10 +32,10 @@ public class Sales {
 		this.customer = customer;
 	}
 	public String getProduct() {
-		return product;
+		return productID;
 	}
 	public void setProduct(String product) {
-		this.product = product;
+		this.productID = product;
 	}
 	public String getSalesDate() {
 		return salesDate;

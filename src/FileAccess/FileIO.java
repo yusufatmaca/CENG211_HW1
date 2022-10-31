@@ -1,19 +1,34 @@
+/* FileIO constructor accepts file name which may be "S1_Products.csv" or "S1_Sales.csv"...
+ * variables named 'counter' is immutable, therefore shallow copy is used.
+ * variables named 'elements, fileName and counter should be private because of being data field.
+ * the method named 'sizeOfElements' was prepared to initialize the size of the array.
+ */
+
+package FileAccess;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class FileIO {
-	public String[] elements;
+	private String[] elements;
 	private String fileName;
+	private int counter = 0;
 
 	public FileIO(String fileName) {
 		setFileName(fileName);
-		elements = new String[setCountLine()];
+		elements = new String[sizeOfElements()];
 		inputStream();
 	}
 
-	int counter = 0;
-	private int setCountLine() { // ismi değiştirilmeli... tüm elemanları sayıyor
+	public int getCounter() {
+		return counter;
+	}
+
+	public void setCounter(int counter) {
+		this.counter = counter;
+	}
+
+	private int sizeOfElements() {
 		int attributes = 0;
 		String line = "";
 		String splitBy = ",";
@@ -32,7 +47,8 @@ public class FileIO {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return (counter-1) * attributes;
+		// The first line in the CSV files is always observed like a title. Therefore, it must be ignored.
+		return (counter-1) * attributes; 
 	}
 	
 	public int getCountLine() {
@@ -71,5 +87,12 @@ public class FileIO {
 
 	private void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+	public String[] getElements() {
+		return elements;
+	}
+
+	public void setElements(String[] elements) {
+		this.elements = elements;
 	}
 }
